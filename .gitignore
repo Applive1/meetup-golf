@@ -3,3 +3,4 @@ data
 dist
 typings
 secret.js
+userSecret.js
