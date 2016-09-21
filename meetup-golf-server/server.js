@@ -33,12 +33,12 @@ app.get("/", function(req, res) {
 	res.sendFile(__dirname + "/index.html");
 });
 
-app.post("/api", function(req, res) {
+app.post("/", function(req, res) {
 	res.send("success");
 });
 
 //User Signup/Login Routes
-app.post("/api/signup", function(req, res) {
+app.post("/signup", function(req, res) {
     UserModel.findOne({
         username: req.body.username
     }, function(err, data) {
@@ -58,6 +58,7 @@ app.post("/api/signup", function(req, res) {
 				email: req.body.email,
 				password: req.body.password,
             };
+				console.log(userInfo, "User Data Is Here");
             var newUser = new UserModel(userInfo);
             newUser.save(function(err) {
                 if (err) {
@@ -74,7 +75,7 @@ app.post("/api/signup", function(req, res) {
     });
 });
 
-app.post("/api/login", function(req, res) {
+app.post("/login", function(req, res) {
 	UserModel.findOne({
 		username: req.body.username,
 		password: req.body.password

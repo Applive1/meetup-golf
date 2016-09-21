@@ -3,9 +3,22 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs/Observable";
 import "rxjs/Rx";
 import "rxjs/add/observable/throw";
+import "rxjs/add/operator/toPromise";
 
 @Injectable()
 export class ApiService {
+
+    postHeaders: Headers = new Headers({
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+    });
+
+    getHeaders: Headers = new Headers({
+        "Accept": "application/json"
+    });
+
+    // Change when we move to new servers
+    url: string = "http://localhost:3500";
 
     constructor(private http: Http) {}
 
@@ -18,7 +31,7 @@ export class ApiService {
             return response;
         } else {
         let error = new Error(response.statusText);
-        error["response"] = response;
+        error["We've encountered a hazard"] = response;
             throw error;
         }
     }

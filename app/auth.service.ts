@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 import { Routes, RouterModule, CanActivate, Router } from "@angular/router";
-import { Http, Response } from "@angular/http";
 
 import { ApiService } from "./api.service";
+import "rxjs/add/operator/toPromise";
 
 @Injectable()
 export class AuthService implements CanActivate {

@@ -6,7 +6,7 @@ import "./rxjs-extensions";
 
 import { AppComponent } from "./app.component";
 import { AuthComponent } from "./auth.component";
-import { routing, appRoutingProviders } from "./app.routing";
+import { routing } from "./app.routing";
 
 import { ApiService } from "./api.service";
 import { AuthService } from "./auth.service";
@@ -20,12 +20,11 @@ import { AuthService } from "./auth.service";
    ],
   declarations: [
     AppComponent,
-    AuthComponent
+    AuthComponent,
      ],
   providers: [
     ApiService,
     AuthService,
-    appRoutingProviders
   ],
   bootstrap:    [ AppComponent ]
 })

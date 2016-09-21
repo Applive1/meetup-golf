@@ -1,37 +1,42 @@
 module.exports = function(mongoose) {
 
-var crypto = require('crypto');
-var jwt = require('jsonwebtoken');
+  var bcrypt = require('bcrypt');
+  var SALT_WORK_FACTOR = 10;
 
 var userSchema = new mongoose.Schema({
 
 	username: {type: String, unique: true},
 	email: {type: String, unique: true},
-	hash: String,
-  salt: String
-  
+	password: String
+
 });
 
-userSchema.methods.setPassword = function(password){
-  this.salt = crypto.randomBytes(16).toString('hex');
-  this.hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64).toString('hex');
-};
+userSchema.pre('save', function(next) {
+    var user = this;
 
-userSchema.methods.validPassword = function(password) {
-  var hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64).toString('hex');
-  return this.hash === hash;
-};
+    // only hash the password if it has been modified (or is new)
+    if (!user.isModified('password')) return next();
 
-userSchema.methods.generateJwt = function() {
-  var expiry = new Date();
-  expiry.setDate(expiry.getDate() + 7);
+    // generate a salt
+    bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
+        if (err) return next(err);
 
-  return jwt.sign({
-    _id: this._id,
-    username: this.username,
-    email: this.email,
-    exp: parseInt(expiry.getTime() / 1000),
-  }, secret = require("./userSecret.js")); // MAKE SURE THIS SECRET WORKS
+        // hash the password using our new salt
+        bcrypt.hash(user.password, salt, function(err, hash) {
+            if (err) return next(err);
+
+            // override the cleartext password with the hashed one
+            user.password = hash;
+            next();
+        });
+    });
+});
+
+userSchema.methods.comparePassword = function(candidatePassword, cb) {
+    bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
+        if (err) return cb(err);
+        cb(null, isMatch);
+    });
 };
 
 var UserModel = mongoose.model('User', userSchema);

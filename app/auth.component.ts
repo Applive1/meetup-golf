@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { AuthService } from "./auth.service";
 import { Router } from "@angular/router";
+import { routing } from "./app.routing";
 
 @Component({
     selector: "auth",
@@ -15,6 +16,7 @@ export class AuthComponent {
 
     loginInfo = {
         username: "",
+        email: "",
         password: "",
     };
 
@@ -36,16 +38,17 @@ export class AuthComponent {
             }
         }
 
-    authenticate() {
-        if (!this.loginInfo.username || !this.loginInfo.password) {
-            return;
-        }
-        this.authService
-        .authenticate(this.mode, this.loginInfo)
-        .subscribe(function(res) {
-            if (res.status === "success") {
-                this.router.navigate([""]);
-            }
-        }.bind(this));
-    }
+        authenticate() {
+            if (!this.loginInfo.username || !this.loginInfo.password) {
+                // Display error message here to user 
+                return;
+            }
+            this.authService
+            .authenticate(this.mode, this.loginInfo)
+            .subscribe(function(res) {
+                if (res.status === "success") {
+                    this.router.navigate([""]);
+                }
+            }.bind(this));
+        }
 }

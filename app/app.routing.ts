@@ -1,18 +1,21 @@
 import { ModuleWithProviders }  from "@angular/core";
-import { Routes, RouterModule, Router } from "@angular/router";
-import { AppComponent } from "./app.component";
+import { Routes, RouterModule } from "@angular/router";
+
 import { AuthComponent } from "./auth.component";
+
 import { AuthService } from "./auth.service";
 
 const appRoutes: Routes = [
     {
         path: "auth",
-        component: AuthComponent
+        component: AuthComponent,
+        // canActivate: [AuthService] // Only show this component to auth'd users
     },
-];
-
-export const appRoutingProviders: any[] = [
-
+    {
+        path: "",
+        redirectTo: "/",
+        pathMatch: "full"
+    },
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);
