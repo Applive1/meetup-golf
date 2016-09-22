@@ -98,6 +98,15 @@ app.post("/login", function(req, res) {
 	});
 });
 
+//Logout
+app.post('/logout', function(req, res){
+		console.log ("Logging out");
+		console.log('username = ' + req.session.user);
+		req.session.user = undefined;
+		res.send("success");
+		console.log('username = ' + req.session.user);
+});
+
 app.use(function(req, res, next) {
 	res.status(404);
 	res.send("no");

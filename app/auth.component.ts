@@ -47,7 +47,7 @@ export class AuthComponent {
             .authenticate(this.mode, this.loginInfo)
             .subscribe(function(res) {
                 if (res.status === "success") {
-                    this.router.navigate([""]);
+                    this.router.navigate(["dashboard"]);
                 }
             }.bind(this));
         }

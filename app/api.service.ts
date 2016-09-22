@@ -17,7 +17,7 @@ export class ApiService {
         "Accept": "application/json"
     });
 
-    // Change when we move to new servers
+    // Change when we move to new server(s)
     url: string = "http://localhost:3500";
 
     constructor(private http: Http) {}

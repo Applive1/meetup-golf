@@ -6,6 +6,8 @@ import "./rxjs-extensions";
 
 import { AppComponent } from "./app.component";
 import { AuthComponent } from "./auth.component";
+import { MainContainer } from "./main-container.component";
+import { DashboardComponent } from "./dashboard.component";
 import { routing } from "./app.routing";
 
 import { ApiService } from "./api.service";
@@ -19,14 +21,16 @@ import { AuthService } from "./auth.service";
     routing
    ],
   declarations: [
+    MainContainer,
     AppComponent,
     AuthComponent,
+    DashboardComponent
      ],
   providers: [
     ApiService,
     AuthService,
   ],
-  bootstrap:    [ AppComponent ]
+  bootstrap:    [ MainContainer ]
 })
 
 export class AppModule { }
