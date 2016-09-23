@@ -24,8 +24,10 @@ export class AuthService implements CanActivate {
             }.bind(this));
         }
 
-        logOut() {
-
+        deauthenticate() {
+            this.authenticated = false;
+            this.user = null;
+            this.router.navigate(["auth"]);
         }
 
         canActivate(): boolean {

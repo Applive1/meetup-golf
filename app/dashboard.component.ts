@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { AuthComponent } from "./auth.component";
 
 import { AuthService } from "./auth.service";
 import { Router } from "@angular/router";
@@ -13,6 +14,17 @@ import { routing } from "./app.routing";
 
 export class DashboardComponent {
 
+    constructor(
+        private authService: AuthService,
+        private router: Router
+        ) { }
 
+    user = this.user;
 
+    deauthenticate(evt) {
+            this.authService.authenticated = false;
+            this.user = null;
+            this.router.navigate(["auth"]);
+            // Need to notify server here, log out completely 
+        }
 }

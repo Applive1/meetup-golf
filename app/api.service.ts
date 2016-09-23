@@ -20,8 +20,10 @@ export class ApiService {
     // Change when we move to new server(s)
     url: string = "http://localhost:3500";
 
+    // Inject the Http provider
     constructor(private http: Http) {}
 
+    // Return an object version of the response JSON
     private getJSON(response: Response) {
         return response.json();
     }
