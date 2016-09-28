@@ -12,14 +12,15 @@ var app = express();
 
 var PORT = process.env.port || 3500;
 
-app.use(bodyParser.json());
+
 app.use(bodyParser.urlencoded({
 	extended: true
 }));
+app.use(bodyParser.json());
 
 app.use(cors());
 app.use(expressSession({
-	secret: require("./secret.js"),
+	secret: "nolayingup",
 	resave: false,
 	saveUninitialized: false
 }));
@@ -58,48 +59,84 @@ app.post("/signup", function(req, res) {
 				email: req.body.email,
 				password: req.body.password,
             };
-				console.log(userInfo, "User Data Is Here");
+			console.log(userInfo, "User Data Is Here");
             var newUser = new UserModel(userInfo);
-            newUser.save(function(err) {
+            newUser.save(function(err, data) {
                 if (err) {
                     res.status(500);
                     res.send("Error creating user");
+					console.log(err);
                     return;
-                } 
-                res.send({
-                    status: "success",
-                    userInfo: userInfo
-                });
+                } else {
+					req.session.user = data;
+	                res.send({
+						status: "success",
+						userInfo: userInfo
+					});
+					console.log(data._id, " I have an ID");
+				}
             });
         }
     });
 });
 
 app.post("/login", function(req, res) {
+		UserModel.findOne({
+			username: req.body.username,
+		}, function(err, data) {
+			if (err) {
+				console.log(err);
+				res.status(500);
+				res.send("Error logging in");
+				return;
+			} else { 
+				data.comparePassword(req.body.password, function(err,isMatch){
+					if (err) {
+						res.send ({
+						status: "error" 
+						});
+						console.log(req.body.password, isMatch);
+					} else {
+						req.session.user = data;
+						res.send({
+							status: "success",
+							userInfo: data
+						}); 
+					}
+				});
+				
+			}
+		});
+});
+	/*
 	UserModel.findOne({
 		username: req.body.username,
-		password: req.body.password
 	}, function(err, data) {
 		if (err) {
+			console.log(err);
 			res.status(500);
 			res.send("Error logging in");
 			return;
-		}
-		if (data) {
-			res.send ({
-				status: "error"
-			});
 		} else {
+			data.comparePassword(req.body.password, function(err, isMatch){
+				if(err) {
+					res.send ({
+						status: "error"
+					});
+				}				
+			});
+		} 
+			req.session.user = data;
 			res.send({
 				status: "success",
 				userInfo: data
 			});
 		}
 	});
-});
+});*/
 
 //Logout
-app.post('/logout', function(req, res){
+app.post("/logout", function(req, res){
 		console.log ("Logging out");
 		console.log('username = ' + req.session.user);
 		req.session.user = undefined;

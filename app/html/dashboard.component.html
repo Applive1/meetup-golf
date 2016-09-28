@@ -1,4 +1,74 @@
 <div>
 	<h1>Build Your Profile</h1>
-	<button (click)="deauthenticate()">Logout</button>
+	<button class="logout" (click)="logout()">Logout</button>
 </div>
+<div class="panel panel-default col-sm-6">
+	<div class="panel-heading">
+		About Me
+	</div>
+	<div class="form-group"> First Name
+		<input 
+			class ="form-control" 
+			type="text" 
+			name="firstname"
+			placeholder="First Name"		
+		/>
+	</div>
+	<div class="form-group"> Last Name
+		<input 
+			class ="form-control" 
+			type="text" 
+			name="lastname"
+			placeholder="Last Name"		
+		/>
+	</div>
+	<div class="form-group"> Age
+		<input 
+			class ="form-control" 
+			type="number" 
+			name="age"
+			placeholder="Age"		
+		/>
+	</div>
+	<div class="form-group"> Handicap
+		<input 
+			class ="form-control" 
+			type="text" 
+			name="handicap"
+			placeholder="Handicap (Leave blank for now if you don't know)"		
+		/>
+	</div>
+	<div class="form-group"> Profession
+		<input 
+			class ="form-control" 
+			type="text" 
+			name="profession"
+			placeholder="Profession"		
+		/>
+	</div>
+	<button type="submit" class="btn btn-primary">Save</button>
+</div>
+<div class="panel panel-default col-sm-6">
+	<div class="panel-heading">
+		Location
+	</div>
+	<div class="form-group"> City
+		<input 
+			class ="form-control" 
+			type="text" 
+			name="city"
+			placeholder="City"		
+		/>
+	</div>
+	<div class="form-group"> State
+		<input 
+			class ="form-control" 
+			type="text" 
+			name="state"
+			placeholder="State"		
+		/>
+	</div>
+	<button type="submit" class="btn btn-primary">Save</button>
+</div>
+
+

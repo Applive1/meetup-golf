@@ -21,7 +21,7 @@ export class DashboardComponent {
 
     user = this.user;
 
-    deauthenticate(evt) {
+    logout(evt) {
             this.authService.authenticated = false;
             this.user = null;
             this.router.navigate(["auth"]);
