@@ -83,13 +83,16 @@ app.post("/signup", function(req, res) {
 app.post("/login", function(req, res) {
 		UserModel.findOne({
 			username: req.body.username,
-		}, function(err, data) {
+		}, 
+		function(err, data) {
 			if (err) {
 				console.log(err);
 				res.status(500);
 				res.send("Error logging in");
 				return;
 			} else { 
+				console.log(data);
+				console.log(req.body.password);
 				data.comparePassword(req.body.password, function(err,isMatch){
 					if (err) {
 						res.send ({
@@ -97,6 +100,7 @@ app.post("/login", function(req, res) {
 						});
 						console.log(req.body.password, isMatch);
 					} else {
+						console.log(data);
 						req.session.user = data;
 						res.send({
 							status: "success",

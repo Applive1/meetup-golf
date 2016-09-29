@@ -27,5 +27,12 @@ export class DashboardComponent {
             this.user = null;
             this.router.navigate(["auth"]);
             // Need to notify server here, log out completely 
-        }
+    }
+
+    submitted = false;
+
+    onSubmit() {
+        this.submitted = true;
+        // Implement API call here to server and DB
+    }
 }

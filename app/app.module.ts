@@ -19,13 +19,13 @@ import { AuthService } from "./auth.service";
     FormsModule,
     HttpModule,
     routing
-   ],
+  ],
   declarations: [
     MainContainer,
     AppComponent,
     AuthComponent,
     DashboardComponent
-     ],
+  ],
   providers: [
     ApiService,
     AuthService,
