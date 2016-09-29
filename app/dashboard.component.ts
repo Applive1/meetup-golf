@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { AuthComponent } from "./auth.component";
 
 import { AuthService } from "./auth.service";
+import { ApiService } from "./api.service";
 import { Router } from "@angular/router";
 import { routing } from "./app.routing";
 

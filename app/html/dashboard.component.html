@@ -2,10 +2,11 @@
 	<h1>Build Your Profile</h1>
 	<button class="logout" (click)="logout()">Logout</button>
 </div>
-<div class="panel panel-default col-sm-6">
-	<div class="panel-heading">
-		About Me
-	</div>
+ <div class="col-lg-6">
+	<div class="panel panel-default">
+		<div class= "panel-heading">
+			About Me
+		</div>
 	<div class="form-group"> First Name
 		<input 
 			class ="form-control" 
@@ -46,29 +47,68 @@
 			placeholder="Profession"		
 		/>
 	</div>
-	<button type="submit" class="btn btn-primary">Save</button>
-</div>
-<div class="panel panel-default col-sm-6">
-	<div class="panel-heading">
-		Location
-	</div>
-	<div class="form-group"> City
+	<div class="form-group"> Company
 		<input 
 			class ="form-control" 
 			type="text" 
-			name="city"
-			placeholder="City"		
-		/>
-	</div>
-	<div class="form-group"> State
-		<input 
-			class ="form-control" 
-			type="text" 
-			name="state"
-			placeholder="State"		
+			name="company"
+			placeholder="Company"		
 		/>
 	</div>
 	<button type="submit" class="btn btn-primary">Save</button>
+	</div>
 </div>
+<div class="col-lg-6">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			Location
+		</div>
+		<div class="form-group"> City
+			<input 
+				class ="form-control" 
+				type="text" 
+				name="city"
+				placeholder="City"		
+			/>
+		</div>
+		<div class="form-group"> State
+			<input 
+				class ="form-control" 
+				type="text" 
+				name="state"
+				placeholder="State"		
+			/>
+		</div>
+		<button type="submit" class="btn btn-primary">Save</button>
+	</div>
+</div>
+<div class="col-lg-6">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			Availability
+		</div>
+		<div class="form-group"> Which days are you available for golf?
+			<input 
+					class ="form-control" 
+					type="text" 
+					name="days"
+					placeholder="Days of the Week"		
+			/>
+		</div>
+		<div class="form-group"> What time of day do you prefer to play?
+			<input 
+					class ="form-control" 
+					type="text" 
+					name="timeofday"
+					placeholder="Time of Day"		
+			/>
+		</div>
+		<button type="submit" class="btn btn-primary">Save</button>
+	</div>
+</div>
+
+
+
+	
 
 
