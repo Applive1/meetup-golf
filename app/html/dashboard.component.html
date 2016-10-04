@@ -4,6 +4,11 @@
 	<h1>Build Your Profile</h1>
 	<button class="logout" (click)="logout()">Logout</button>
 <form (ngSubmit)="onSubmit()" #myForm="ngForm">
+ <div class="alert alert-info">
+      Ready to submit?:
+      <span *ngIf="myForm.form.valid" class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+      <span *ngIf="!myForm.form.valid" class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+ </div>
  <div class="col-lg-6">
 	<div class="panel panel-default">
 		<div class= "panel-heading">
@@ -13,11 +18,13 @@
 		<input 
 			id = "firstName"
 			class ="form-control" 
-			type="text" 
-			name="firstname"
-			placeholder="First Name"		
+			type="text"
+			placeholder="First Name"
+			[(ngModel)]="profile.firstName"
+			required name="firstName"	
+			#firstName = "ngModel"
 		/>
-		<div [hidden]="firstnameCtrl.valid" class="alert alert-danger">
+		<div [hidden]="firstName.valid || firstName.pristine" class="alert alert-danger">
 			First name is required! Please fill in a value.
 		</div>
 	</div>
@@ -26,26 +33,38 @@
 			id = "lastName"
 			class ="form-control" 
 			type="text" 
-			name="lastname"
-			placeholder="Last Name"		
+			placeholder="Last Name"	
+			[(ngModel)]="profile.lastName"
+			required name="lastName"	
+			#lastName = "ngModel"	
 		/>
+		<div [hidden]="lastName.valid || lastName.pristine" class="alert alert-danger">
+			Last name is required! Please fill in a value.
+		</div>
 	</div>
 	<div class="form-group"> Age
 		<input 
 			id = "age"
 			class ="form-control" 
 			type="number" 
-			name="age"
-			placeholder="Age"		
+			placeholder="Age"
+			[(ngModel)]="profile.age"
+			required name="age"	
+			#age = "ngModel"		
 		/>
+		<div [hidden]="age.valid || age.pristine" class="alert alert-danger">
+			Age is required! Please fill in a value.
+		</div>
 	</div>
 	<div class="form-group"> Handicap
 		<input 
 			id = "handicap"
 			class ="form-control" 
-			type="text" 
-			name="handicap"
-			placeholder="Handicap (Leave blank for now if you don't know)"		
+			type="number"
+			placeholder="Handicap (Leave blank if you don't have one)"
+			[(ngModel)]="profile.handicap"
+			name="handicap"	
+			#handicap = "ngModel"		
 		/>
 	</div>
 	<div class="form-group"> Profession
@@ -53,17 +72,24 @@
 			id = "profession"
 			class ="form-control" 
 			type="text" 
-			name="profession"
-			placeholder="Profession"		
+			placeholder="Profession"
+			[(ngModel)]="profile.profession"
+			required name="profession"
+			#profession = "ngModel"			
 		/>
+		<div [hidden]="profession.valid || profession.pristine" class="alert alert-danger">
+			Profession is required! Please fill in a value.
+		</div>
 	</div>
 	<div class="form-group"> Company
 		<input 
 			id = "company"
 			class ="form-control" 
 			type="text" 
+			placeholder="Company"	
+			[(ngModel)]="profile.company"	
 			name="company"
-			placeholder="Company"		
+			#company = "ngModel"		
 		/>
 	</div>
 	<button type="submit" class="btn btn-primary" [disabled]="!myForm.form.valid">Save</button>
@@ -79,18 +105,28 @@
 				id = "city"
 				class ="form-control" 
 				type="text" 
-				name="city"
-				placeholder="City"		
+				placeholder="City"
+				[(ngModel)]="profile.city"
+				required name="city"
+				#city = "ngModel"			
 			/>
+			<div [hidden]="city.valid || city.pristine" class="alert alert-danger">
+			City is required! Please fill in a value.
+		</div>
 		</div>
 		<div class="form-group"> State
 			<input 
 				id = "state"
 				class ="form-control" 
 				type="text" 
-				name="state"
-				placeholder="State"		
+				placeholder="State"
+				[(ngModel)]="profile.state"
+				required name="state"	
+				#state = "ngModel"		
 			/>
+			<div [hidden]="state.valid || state.pristine" class="alert alert-danger">
+			State is required! Please fill in a value.
+		</div>
 		</div>
 		<button type="submit" class="btn btn-primary" [disabled]="!myForm.form.valid">Save</button>
 	</div>
@@ -100,21 +136,83 @@
 		<div class="panel-heading">
 			Availability
 		</div>
-		<div class="form-group"> Which days are you available for golf?
-			<input
-					class ="form-control" 
-					type="text" 
-					name="days"
-					placeholder="Days of the Week"		
-			/>
+		<div class="form-group"> Which days are you available for golf? (Check all that apply)
+			<label class="checkbox">
+				<input 
+					id="monday" 
+					type="checkbox" 
+					value=""
+					[(ngModel)]="profile.monday"
+					name="monday"	
+					#monday = "ngModel">
+			Monday
+			</label>
+			<label class="checkbox">
+				<input 
+					id="tuesday"
+					type="checkbox" 
+					value=""
+					[(ngModel)]="profile.tuesday"
+					name="tuesday"	
+					#tuesday = "ngModel">
+			Tuesday
+			</label>
+			<label class="checkbox">
+				<input 
+					id="wednesday" 
+					type="checkbox" 
+					value=""
+					[(ngModel)]="profile.wednesday"
+					name="wednesday"	
+					#wednesday = "ngModel">
+			Wednesday
+			</label>
+			<label class="checkbox">
+				<input 
+					id="thursday" 
+					type="checkbox" 
+					value=""
+					[(ngModel)]="profile.thursday"
+					name="thursday"	
+					#thursday = "ngModel">
+			Thursday
+			</label>
+			<label class="checkbox">
+				<input 
+					id="friday" 
+					type="checkbox" 
+					value=""
+					[(ngModel)]="profile.friday"
+					name="friday"	
+					#friday = "ngModel">
+			Friday
+			</label>
+			<label class="checkbox">
+				<input 
+					id="saturday" 
+					type="checkbox" 
+					value=""
+					[(ngModel)]="profile.saturday"
+					name="saturday"	
+					#saturday = "ngModel">
+			Saturday
+			</label>
+			<label class="checkbox">
+				<input 
+					id="sunday" 
+					type="checkbox" 
+					value=""
+					[(ngModel)]="profile.sunday"
+					name="sunday"	
+					#sunday = "ngModel">
+			Sunday
+			</label>
 		</div>
-		<div class="form-group"> What time of day do you prefer to play?
-			<input 
-					class ="form-control" 
-					type="text" 
-					name="timeofday"
-					placeholder="Time of Day"		
-			/>
+		<div class="form-group"> What time of day do you prefer to play? (Check all that apply)
+			<label class="checkbox"><input id="morning" type="checkbox" value="">Morning</label>
+			<label class="checkbox"><input id="midday" type="checkbox" value="">Midday</label>
+			<label class="checkbox"><input id="afternoon" type="checkbox" value="">Afternoon</label>
+			<label class="checkbox"><input id="evening" type="checkbox" value="">Evening</label>
 		</div>
 		<button type="submit" class="btn btn-primary" [disabled]="!myForm.form.valid">Save</button>
 </div>

@@ -91,17 +91,23 @@ app.post("/login", function(req, res) {
 				res.send("Error logging in");
 				return;
 			} else { 
-				console.log(data);
-				console.log(req.body.password);
+				//Need to handle error event of null, currently it's crashing server 
 				data.comparePassword(req.body.password, function(err,isMatch){
 					if (err) {
 						res.send ({
 						status: "error" 
 						});
 						console.log(req.body.password, isMatch);
+					} else if (!isMatch) {
+						res.send ({
+							status: "error",
+						});
+						console.log("incorrect password");
 					} else {
 						console.log(data);
 						req.session.user = data;
+						delete req.session.user.password;
+						delete data.password;
 						res.send({
 							status: "success",
 							userInfo: data
@@ -112,32 +118,6 @@ app.post("/login", function(req, res) {
 			}
 		});
 });
-	/*
-	UserModel.findOne({
-		username: req.body.username,
-	}, function(err, data) {
-		if (err) {
-			console.log(err);
-			res.status(500);
-			res.send("Error logging in");
-			return;
-		} else {
-			data.comparePassword(req.body.password, function(err, isMatch){
-				if(err) {
-					res.send ({
-						status: "error"
-					});
-				}				
-			});
-		} 
-			req.session.user = data;
-			res.send({
-				status: "success",
-				userInfo: data
-			});
-		}
-	});
-});*/
 
 //Logout
 app.post("/logout", function(req, res){

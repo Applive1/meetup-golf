@@ -1,6 +1,6 @@
 module.exports = function(mongoose) {
 
-  bcrypt = require('bcrypt'),
+  var bcrypt = require('bcrypt'),
   SALT_WORK_FACTOR = 10,
   MAX_LOGIN_ATTEMPTS = 5,
   LOCK_TIME = 2 * 60 * 60 * 1000;

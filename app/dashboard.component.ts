@@ -6,6 +6,8 @@ import { ApiService } from "./api.service";
 import { Router } from "@angular/router";
 import { routing } from "./app.routing";
 
+import { Profile } from "./profile";
+
 
 @Component({
     selector: "dashboard",
@@ -23,13 +25,15 @@ export class DashboardComponent {
     user = this.user;
 
     logout(evt) {
-            this.authService.authenticated = false;
+         this.authService.deauthenticate().subscribe(function(res) {
             this.user = null;
             this.router.navigate(["auth"]);
-            // Need to notify server here, log out completely 
+        });
     }
 
     submitted = false;
+
+   // profile = new Profile();
 
     onSubmit() {
         this.submitted = true;
