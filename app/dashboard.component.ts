@@ -2,7 +2,6 @@ import { Component } from "@angular/core";
 import { AuthComponent } from "./auth.component";
 
 import { AuthService } from "./auth.service";
-import { ApiService } from "./api.service";
 import { Router } from "@angular/router";
 import { routing } from "./app.routing";
 
@@ -33,7 +32,7 @@ export class DashboardComponent {
 
     submitted = false;
 
-   // profile = new Profile();
+   // model = this.user.profile;   A user needs to have a profile, in the schema and defined on the front end. Maybe here, maybe in the service I use. 
 
     onSubmit() {
         this.submitted = true;

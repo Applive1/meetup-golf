@@ -20,7 +20,7 @@
 			class ="form-control" 
 			type="text"
 			placeholder="First Name"
-			[(ngModel)]="profile.firstName"
+			[(ngModel)]="model.firstName"
 			required name="firstName"	
 			#firstName = "ngModel"
 		/>
@@ -34,7 +34,7 @@
 			class ="form-control" 
 			type="text" 
 			placeholder="Last Name"	
-			[(ngModel)]="profile.lastName"
+			[(ngModel)]="model.lastName"
 			required name="lastName"	
 			#lastName = "ngModel"	
 		/>
@@ -48,7 +48,7 @@
 			class ="form-control" 
 			type="number" 
 			placeholder="Age"
-			[(ngModel)]="profile.age"
+			[(ngModel)]="model.age"
 			required name="age"	
 			#age = "ngModel"		
 		/>
@@ -62,7 +62,7 @@
 			class ="form-control" 
 			type="number"
 			placeholder="Handicap (Leave blank if you don't have one)"
-			[(ngModel)]="profile.handicap"
+			[(ngModel)]="model.handicap"
 			name="handicap"	
 			#handicap = "ngModel"		
 		/>
@@ -73,7 +73,7 @@
 			class ="form-control" 
 			type="text" 
 			placeholder="Profession"
-			[(ngModel)]="profile.profession"
+			[(ngModel)]="model.profession"
 			required name="profession"
 			#profession = "ngModel"			
 		/>
@@ -87,7 +87,7 @@
 			class ="form-control" 
 			type="text" 
 			placeholder="Company"	
-			[(ngModel)]="profile.company"	
+			[(ngModel)]="model.company"	
 			name="company"
 			#company = "ngModel"		
 		/>
@@ -106,7 +106,7 @@
 				class ="form-control" 
 				type="text" 
 				placeholder="City"
-				[(ngModel)]="profile.city"
+				[(ngModel)]="model.city"
 				required name="city"
 				#city = "ngModel"			
 			/>
@@ -120,7 +120,7 @@
 				class ="form-control" 
 				type="text" 
 				placeholder="State"
-				[(ngModel)]="profile.state"
+				[(ngModel)]="model.state"
 				required name="state"	
 				#state = "ngModel"		
 			/>
@@ -142,7 +142,7 @@
 					id="monday" 
 					type="checkbox" 
 					value=""
-					[(ngModel)]="profile.monday"
+					[(ngModel)]="model.monday"
 					name="monday"	
 					#monday = "ngModel">
 			Monday
@@ -152,7 +152,7 @@
 					id="tuesday"
 					type="checkbox" 
 					value=""
-					[(ngModel)]="profile.tuesday"
+					[(ngModel)]="model.tuesday"
 					name="tuesday"	
 					#tuesday = "ngModel">
 			Tuesday
@@ -162,7 +162,7 @@
 					id="wednesday" 
 					type="checkbox" 
 					value=""
-					[(ngModel)]="profile.wednesday"
+					[(ngModel)]="model.wednesday"
 					name="wednesday"	
 					#wednesday = "ngModel">
 			Wednesday
@@ -172,7 +172,7 @@
 					id="thursday" 
 					type="checkbox" 
 					value=""
-					[(ngModel)]="profile.thursday"
+					[(ngModel)]="model.thursday"
 					name="thursday"	
 					#thursday = "ngModel">
 			Thursday
@@ -182,7 +182,7 @@
 					id="friday" 
 					type="checkbox" 
 					value=""
-					[(ngModel)]="profile.friday"
+					[(ngModel)]="model.friday"
 					name="friday"	
 					#friday = "ngModel">
 			Friday
@@ -192,7 +192,7 @@
 					id="saturday" 
 					type="checkbox" 
 					value=""
-					[(ngModel)]="profile.saturday"
+					[(ngModel)]="model.saturday"
 					name="saturday"	
 					#saturday = "ngModel">
 			Saturday
@@ -202,7 +202,7 @@
 					id="sunday" 
 					type="checkbox" 
 					value=""
-					[(ngModel)]="profile.sunday"
+					[(ngModel)]="model.sunday"
 					name="sunday"	
 					#sunday = "ngModel">
 			Sunday
